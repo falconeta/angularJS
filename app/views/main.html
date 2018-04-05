@@ -12,7 +12,7 @@
 </div>
 
 <div class="row marketing">
-  <ul ng-repeat="elem in data">
+  <ul ng-repeat="elem in main.data">
     <li>{{elem}}</li>
   </ul>
 </div>
@@ -36,7 +36,7 @@ cerca tutto
     <input type="text" class="
     form-control" id="prodprice" placeholder="Prezzo" ng-model="product.price" required>
   </div>
-  <button type="submit" class="btn btn-primary" ng-click="addProduct(product)">Aggiungi</button>
+  <button type="submit" class="btn btn-primary" ng-click="main.addProduct(product)">Aggiungi</button>
 </form>
 <br/>
 <br/>

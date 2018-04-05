@@ -10,4 +10,5 @@
 angular.module('appTestApp')
   .controller('AboutCtrl',['$scope', function ($scope) {
     $scope.pippo = ['ciao', 'cane' , 'pippo'];
+    console.log('vettore' ,$scope);
   }]);
