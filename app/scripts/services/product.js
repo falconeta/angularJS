@@ -8,7 +8,14 @@ angular.module('appTestApp')
         lista.push({name: prodotto.name, price: prodotto.price});
       },
       getInitialList: function(){
-        return product.initialList;
+        return new Promise(function(resolve, reject){
+          if (product.initialList.length > 0){
+            resolve(product.initialList);
+          }else{
+            reject('nessun valore');
+          }
+        });
+        
       }
     };
     return product;
