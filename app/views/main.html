@@ -42,7 +42,7 @@ cerca tutto
 <br/>
 <div class="row">
   <div ng-hide="productList.length">Non hai aggiunto nessun prodotto</div>
-  <div ng-repeat="p in productList | filter:{name: searchProductName}">
+  <div ng-repeat="p in productList | filter:{name: searchProductName} | filter: searchProduct">
     <product-list></product-list>
   </div>
 </div>
