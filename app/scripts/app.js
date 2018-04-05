@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(false).hashPrefix('');
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
