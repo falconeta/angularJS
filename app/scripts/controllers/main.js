@@ -9,6 +9,7 @@
  */
 angular.module('appTestApp')
   .controller('MainCtrl',['$scope', 'productManager', function ($scope, productManager) {
+    $scope.product = {name: '', price: ''};
     productManager.getInitialList().then(function(array){
       $scope.productList = array;
     });

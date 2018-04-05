@@ -15,7 +15,7 @@ angular.module('appTestApp')
             reject('nessun valore');
           }
         });
-        
+
       }
     };
     return product;
