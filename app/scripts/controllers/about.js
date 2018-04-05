@@ -8,7 +8,6 @@
  * Controller of the appTestApp
  */
 angular.module('appTestApp')
-  .controller('AboutCtrl',['$scope', function ($scope) {
-    $scope.pippo = ['ciao', 'cane' , 'pippo'];
-    console.log('vettore' ,$scope);
+  .controller('AboutCtrl',['$scope', 'productManager', function ($scope, x) {
+    console.log(x.getInitialList());
   }]);

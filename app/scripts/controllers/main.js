@@ -8,23 +8,10 @@
  * Controller of the appTestApp
  */
 angular.module('appTestApp')
-  .factory('productManager', function(){
-    var product = {
-      initialList: [{name: 'Play', price: '10'},{name: 'test', price : '20'}],
-      addProduct: function(prodotto, lista){
-        lista.push({name: prodotto.name, price: prodotto.price});
-      },
-      getInitialList: function(){
-        return product.initialList;
-      }
-    };
-    return product;
-  })
   .controller('MainCtrl',['$scope', 'productManager', function ($scope, productManager) {
     $scope.productList = productManager.getInitialList();
     this.data = ['dato1',  'dato2', 'dato3'];
     this.addProduct = function (product){
-      //$scope.productList.push({name: product.name, price: product.price});
       productManager.addProduct(product, $scope.productList);
       $scope.product = {};
       console.log($scope.productList);
