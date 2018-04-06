@@ -9,7 +9,8 @@
  */
 angular.module('appTestApp')
   .controller('AboutCtrl',['restService', function (restService) {
-    console.log(restService.getUser());
+    var user = new User('vittorio');
+    console.log(user.name());
     
     restService.getUser().then(function(data){
       console.log(data.data);
