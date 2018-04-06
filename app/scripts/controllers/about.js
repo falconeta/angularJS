@@ -8,11 +8,11 @@
  * Controller of the appTestApp
  */
 angular.module('appTestApp')
-  .controller('AboutCtrl',['restService', function (restService) {
-    var user = new User('vittorio');
-    console.log(user.name());
+  .controller('AboutCtrl',['restService','User','$scope', function (restService, User, $scope) {
     
     restService.getUser().then(function(data){
       console.log(data.data);
+      $scope.user = new User(data.data.results[0]);
+      console.log($scope.user.getFullName());
     });
   }]);
