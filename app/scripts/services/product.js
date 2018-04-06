@@ -2,23 +2,20 @@
 
 angular.module('appTestApp')
   .service('productManager', function () {
-    var product = {
-      initialList: [{ name: 'Play', price: '10' }, { name: 'test', price: '20' }],
-      addProduct: function (prodotto, lista) {
+      this.initialList = [{ name: 'Play', price: '10' }, { name: 'test', price: '20' }];
+      var that = this;
+      this.addProduct = function (prodotto, lista) {
         lista.push({ name: prodotto.name, price: prodotto.price });
-      },
-      getInitialList: function () {
+      };
+      this.getInitialList = function () {
         return new Promise(function (resolve, reject) {
-          if (product.initialList.length > 0) {
+          if (that.initialList.length > 0) {
             setTimeout(function () {
-              var bool = true;
-              resolve([product.initialList, bool]);
+              resolve([that.initialList, true]);
             }, 2000);
           } else {
             reject('nessun valore');
           }
         });
-      }
-    };
-    return product;
+      };
   });
