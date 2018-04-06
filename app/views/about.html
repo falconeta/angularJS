@@ -1,15 +1,23 @@
-<input type="text" ng-model="searchByName">
+<div>
+    <label for="">Cerca per nome </label> 
+    <input type="text" placeholder="Nome" ng-model="searchByName">
+</div>
+<div>
+    <label for="">Cerca per via</label>
+    <input type="text" placeholder="Via" ng-model="searchByStreet">
+</div>
+
 <div>
   <table class="table table-striped">
     <thead class="thead-dark">
       <tr>
         <th>Photo</th>
-        <th ng-click="toggleOrderName()">  Name</th>
-        <th>Address</th>
+        <th ng-click="toggleOrderName()">  <i class="material-icons">{{arrowName}}</i> Name</th>
+        <th><i class="material-icons">{{arrowName}}</i> Address</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="user in about.users |  orderBy: orderName |filter: searchByName">
+      <tr ng-repeat="user in about.users |  orderBy: orderName | filter:{firstName: searchByName} | filter:{street: searchByStreet} ">
         <td><img ng-src="{{user.img}}" alt=""></td>
         <td>
           <p>{{user.getFullName()}}</p>
