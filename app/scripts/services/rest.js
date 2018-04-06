@@ -6,4 +6,7 @@ angular.module('appTestApp')
     this.getUser = function() {
         return $http.get(this.url);
     };
+    this.getUsers = function() {
+        return $http.get(this.url+'?results=50');
+    };
   }]);

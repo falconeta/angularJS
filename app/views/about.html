@@ -1,6 +1,23 @@
-
+<input type="text" ng-model="searchByName">
 <div>
-  <p>{{user.getFullName()}}</p>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Photo</th>
+        <th ng-click="toggleOrderName()">  Name</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in about.users |  orderBy: orderName |filter: searchByName">
+        <td><img ng-src="{{user.img}}" alt=""></td>
+        <td>
+          <p>{{user.getFullName()}}</p>
+        </td>
+        <td>
+          <p>{{user.getFullStreet()}}</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-  
-<p>This is the about view.</p>

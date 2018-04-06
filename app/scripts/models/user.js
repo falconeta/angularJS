@@ -1,63 +1,36 @@
 'use strict';
 
 angular.module('appTestApp')
-.factory('User', function () {
- 
-    /**
-     * Constructor, with class name
-     */
-    var User = function (user) {
-      // Public properties, assigned to the instance ('this')
-      //this.firstName = '';
-      this.firstName = user.name.first;
-      this.lastName = user.name.last;
-      this.title = user.name.title;
-      //this.organisation = organisation;
-    }
-   
-    /**
-     * Public method, assigned to prototype
-     */
-    User.prototype.getFullName = function () {
-      return this.firstName + ' ' + this.lastName;
-    };
-   
-    /**
-     * Private property
-     */
-    var possibleRoles = ['admin', 'editor', 'guest'];
-   
-    /**
-     * Private function
-     */
-    function checkRole(role) {
-      return possibleRoles.indexOf(role) !== -1;
-    }
-   
-    /**
-     * Static property
-     * Using copy to prevent modifications to private property
-     */
-    User.possibleRoles = angular.copy(possibleRoles);
-   
-    /**
-     * Static method, assigned to class
-     * Instance ('this') is not available in static context
-     */
-    User.build = function (data) {
-      if (!checkRole(data.role)) {
-        return;
-      }
-      return new User(
-        data.first_name,
-        data.last_name,
-        data.role,
-        Organisation.build(data.organisation) // another model
-      );
-    };
-   
-    /**
-     * Return the constructor function
-     */
-    return User;
-  });
+    .factory('User', function () {
+
+        var User =
+            //costruttore
+            function (user) {
+                this.firstName = user.name.first;
+                this.lastName = user.name.last;
+                this.title = user.name.title;
+                this.email = user.email;
+                this.street = user.location.street;
+                this.city = user.location.city;
+                this.state = user.location.state;
+                this.postcode = user.location.postcode;
+                this.img = user.picture.large;
+            };
+        /**
+         * Public method, assigned to prototype
+         */
+        User.prototype.getFullName = function () {
+            return this.firstName + ' ' + this.lastName;
+        };
+
+        User.prototype.getFullStreet = function(){
+            return  this.street + ', ' + 
+                    this.city + ', ' + 
+                    this.state + ', '+
+                    this.postcode;
+        };
+        /**
+         * Return the constructor function
+         */
+        return User;
+    });
