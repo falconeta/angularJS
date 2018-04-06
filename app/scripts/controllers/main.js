@@ -8,20 +8,24 @@
  * Controller of the appTestApp
  */
 angular.module('appTestApp')
-  .controller('MainCtrl',['$scope', 'productManager', function ($scope, productManager) {
-    $scope.product = {name: '', price: ''};
-    productManager.getInitialList().then(function(array){
-      $scope.productList = array;
+  .controller('MainCtrl', ['$scope', 'productManager', '$q', function ($scope, productManager, $q) {
+    $scope.product = { name: '', price: '' };
+    $scope.productList = [];
+    // utilizzando il $q riesco ad aggiornare il binding dei dati dopo che una promie è consumata
+    $q.when(productManager.getInitialList()).then(function (array) {
+      $scope.productList = array[0];
+      console.log(array[1]);
     });
-    this.data = ['dato1',  'dato2', 'dato3'];
-    this.addProduct = function (product){
+
+    this.data = ['dato1', 'dato2', 'dato3'];
+    this.addProduct = function (product) {
       productManager.addProduct(product, $scope.productList);
       $scope.product = {};
       console.log($scope.productList);
     };
 
   }])
-  .directive('productList', function(){
+  .directive('productList', function () {
     return {
       template: '<b>Nome Prodotto: </b><span>{{p.name | uppercase}} </span> <b>Prezzo Prodotto: </b><span>{{p.price | currency: "€ "}} </span>'
     };
