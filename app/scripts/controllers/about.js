@@ -10,8 +10,8 @@
 angular.module('appTestApp')
   .controller('AboutCtrl', ['restService', 'User', '$scope', function (restService, User, $scope) {
     var that = this;
-    $scope.bool = true;
     $scope.arrowName = 'keyboard_arrow_down';
+    $scope.arrowStreet = '';
     $scope.orderName = 'firstName';
     restService.getUsers().then(function (response) {
       console.log(response.data);
@@ -22,14 +22,23 @@ angular.module('appTestApp')
       console.log($scope);
     });
     $scope.toggleOrderName = function () {
-      if ($scope.bool) {
-        $scope.bool = false;
+      $scope.arrowStreet= '';
+      if ($scope.arrowName === 'keyboard_arrow_down') {
         $scope.arrowName = 'keyboard_arrow_up';
         $scope.orderName = '-firstName';
       } else {
         $scope.arrowName = 'keyboard_arrow_down';
-        $scope.bool = true;
         $scope.orderName = 'firstName';
       }
     };
+    $scope.toggleOrderStreet = function () {
+      $scope.arrowName = '';
+      if ($scope.arrowStreet === 'keyboard_arrow_down') {
+        $scope.arrowStreet = 'keyboard_arrow_up';
+        $scope.orderName = '-street';
+      } else {
+        $scope.arrowStreet = 'keyboard_arrow_down';
+        $scope.orderName = 'street';
+      }
+    }
   }]);
